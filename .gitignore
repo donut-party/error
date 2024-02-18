@@ -2,6 +2,7 @@
 *.jar
 *.log
 .clj-kondo/cache
+.clj-kondo/metosin
 .cpcache
 .dir-locals.el
 .lein-env

@@ -1,5 +1,5 @@
 (ns build
-  "donut/protocol-template's build script. Builds on https://github.com/seancorfield/honeysql/blob/develop/build.clj
+  "donut/whoops's build script. Builds on https://github.com/seancorfield/honeysql/blob/develop/build.clj
 
   Run tests:
   clojure -X:test
@@ -12,14 +12,14 @@
    [deps-deploy.deps-deploy :as dd])
   (:refer-clojure :exclude [test]))
 
-(def lib 'party.donut/protocol-template)
+(def lib 'party.donut/whoops)
 (def version (format "0.0.%s" (b/git-count-revs nil)))
 (def class-dir "target/classes")
 (def basis (b/create-basis {:project "deps.edn"}))
 
 (defn- pom-template [version]
-  [[:description "template protocol implementations. pretty bad idea"]
-   [:url "https://github.com/donut-power/protocol-template"]
+  [[:description "for oopsies and whoopsiedoodles"]
+   [:url "https://github.com/donut-power/whoops"]
    [:licenses
     [:license
      [:name "MIT"]
@@ -28,9 +28,9 @@
     [:developer
      [:name "Daniel Higginbotham"]]]
    [:scm
-    [:url "https://github.com/donut-power/protocol-template"]
-    [:connection "scm:git:https://github.com/donut-power/protocol-template.git"]
-    [:developerConnection "scm:git:ssh:git@github.com:donut-power/protocol-template.git"]
+    [:url "https://github.com/donut-power/whoops"]
+    [:connection "scm:git:https://github.com/donut-power/whoops.git"]
+    [:developerConnection "scm:git:ssh:git@github.com:donut-power/whoops.git"]
     [:tag (str "v" version)]]])
 
 (defn- jar-opts [opts]
