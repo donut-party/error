@@ -18,7 +18,7 @@
 (def basis (b/create-basis {:project "deps.edn"}))
 
 (defn- pom-template [version]
-  [[:description "for oopsies and erroriedoodles"]
+  [[:description "for oopsies and whoopsiedoodles"]
    [:url "https://github.com/donut-power/error"]
    [:licenses
     [:license
