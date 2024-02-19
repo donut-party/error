@@ -1,5 +1,5 @@
 (ns build
-  "donut/whoops's build script. Builds on https://github.com/seancorfield/honeysql/blob/develop/build.clj
+  "donut/error's build script. Builds on https://github.com/seancorfield/honeysql/blob/develop/build.clj
 
   Run tests:
   clojure -X:test
@@ -12,14 +12,14 @@
    [deps-deploy.deps-deploy :as dd])
   (:refer-clojure :exclude [test]))
 
-(def lib 'party.donut/whoops)
+(def lib 'party.donut/error)
 (def version (format "0.0.%s" (b/git-count-revs nil)))
 (def class-dir "target/classes")
 (def basis (b/create-basis {:project "deps.edn"}))
 
 (defn- pom-template [version]
-  [[:description "for oopsies and whoopsiedoodles"]
-   [:url "https://github.com/donut-power/whoops"]
+  [[:description "for oopsies and erroriedoodles"]
+   [:url "https://github.com/donut-power/error"]
    [:licenses
     [:license
      [:name "MIT"]
@@ -28,9 +28,9 @@
     [:developer
      [:name "Daniel Higginbotham"]]]
    [:scm
-    [:url "https://github.com/donut-power/whoops"]
-    [:connection "scm:git:https://github.com/donut-power/whoops.git"]
-    [:developerConnection "scm:git:ssh:git@github.com:donut-power/whoops.git"]
+    [:url "https://github.com/donut-power/error"]
+    [:connection "scm:git:https://github.com/donut-power/error.git"]
+    [:developerConnection "scm:git:ssh:git@github.com:donut-power/error.git"]
     [:tag (str "v" version)]]])
 
 (defn- jar-opts [opts]
