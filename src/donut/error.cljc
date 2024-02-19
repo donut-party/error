@@ -38,17 +38,6 @@
           (schema-explain-body explanation printer)
           (donut-footer data printer))})
 
-(defn validate-ex-info
-  [schema x ex-data]
-  (when-let [explanation (m/explain schema x)]
-    (ex-info (str ::schema-validation-error)
-             (merge
-              {::id               ::schema-validation-error
-               ::url              "https://donut.party/errors/#schema-validation-error"
-               :explanation-human (me/humanize (me/with-spell-checking explanation))
-               :explanation       explanation}
-              ex-data))))
-
 (defn url
   [error-id]
   (str "https://donut.party/errors/#" error-id))
@@ -76,7 +65,7 @@
 
 (defn format [e printer]
   (let [data (ex-data e)]
-    (v/-format (ex-info "malli shim" {:type (::id data)}) data printer)))
+    (v/-format (ex-info (::id data) {:type (::id data)}) data printer)))
 
 (defn exception-document [e printer]
   (let [{:keys [title body] :or {title (:title printer)}} (format e printer)
