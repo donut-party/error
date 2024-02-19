@@ -50,17 +50,21 @@
               ex-data))))
 
 (defmacro validate!
-  [schema x & [more-ex-data]]
-  `(when-let [explanation# (m/explain ~schema ~x)]
-     (let [ei# (ex-info (str ::schema-validation-error)
-                        (merge
-                         {::id               ::schema-validation-error
-                          ::url              "https://donut.party/errors/#schema-validation-error"
-                          :explanation-human (me/humanize (me/with-spell-checking explanation#))
-                          :explanation       explanation#}
-                         ~more-ex-data))]
-       (tap> ei#)
-       (throw ei#))))
+  ([schema x]
+   `(validate! ~schema ~x nil nil))
+  ([schema x more-ex-data]
+   `(validate! ~schema ~x nil ~more-ex-data))
+  ([schema x error-msg more-ex-data]
+   `(when-let [explanation# (m/explain ~schema ~x)]
+      (let [ei# (ex-info (or ~error-msg (str ::schema-validation-error))
+                         (merge
+                          {::id               ::schema-validation-error
+                           ::url              "https://donut.party/errors/#schema-validation-error"
+                           :explanation-human (me/humanize (me/with-spell-checking explanation#))
+                           :explanation       explanation#}
+                          ~more-ex-data))]
+        (tap> ei#)
+        (throw ei#)))))
 
 (defn format [e printer]
   (let [data (ex-data e)]
