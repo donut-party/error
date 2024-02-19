@@ -3,7 +3,7 @@
    [malli.core :as m]
    [malli.error :as me])
   #?(:cljs (:require-macros [donut.error :refer [validate!]]))
-  (:refer-clojure :exclude [format]))
+  )
 
 (defn url
   [error-id]

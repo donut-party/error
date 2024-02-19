@@ -2,7 +2,8 @@
   (:require
    [malli.dev.pretty :as pretty]
    [malli.dev.virhe :as v]
-   [malli.error :as me]))
+   [malli.error :as me])
+  (:refer-clojure :exclude [format]))
 
 (defn -block [text body printer]
   [:group (v/-text (str text ":") printer)
