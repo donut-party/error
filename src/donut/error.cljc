@@ -4,6 +4,8 @@
    [malli.dev.pretty :as pretty]
    [malli.dev.virhe :as v]
    [malli.error :as me])
+  #?(:cljs
+     (:require-macros [donut.error]))
   (:refer-clojure :exclude [format]))
 
 (defn -block [text body printer]
