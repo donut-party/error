@@ -1,5 +1,6 @@
 (ns donut.error.dev
   (:require
+   [donut.error :as de]
    [malli.dev.pretty :as pretty]
    [malli.dev.virhe :as v]
    [malli.error :as me])
@@ -19,7 +20,7 @@
    (-block "Schema" (v/-visit (:schema explanation) printer) printer)])
 
 (defn donut-footer
-  [{:keys [::url]} printer]
+  [{:keys [::de/url]} printer]
   (cond-> []
     url (conj (-block "More Information" (v/-visit url printer) printer))))
 
@@ -31,7 +32,7 @@
        (interpose [:group :break :break])
        (into [:group])))
 
-(defmethod v/-format ::schema-validation-error [_ {:keys [explanation] :as data} printer]
+(defmethod v/-format ::de/schema-validation-error [_ {:keys [explanation] :as data} printer]
   {:title "Schema Validation Error"
    :body (build-group
           (schema-explain-body explanation printer)
@@ -39,7 +40,10 @@
 
 (defn format [e printer]
   (let [data (ex-data e)]
-    (v/-format (ex-info (::id data) {:type (::id data)}) data printer)))
+    (v/-format (ex-info (str (::de/id data))
+                        {:type (::de/id data)})
+               data
+               printer)))
 
 (defn exception-document [e printer]
   (let [{:keys [title body] :or {title (:title printer)}} (format e printer)
@@ -59,5 +63,5 @@
 
 (defn error-tap
   [v]
-  (when (-> v ex-data ::id)
+  (when (-> v ex-data ::de/id)
     (@reporter v)))
