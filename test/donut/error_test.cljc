@@ -11,7 +11,11 @@
              e
            (is (= ":donut.error/schema-validation-error"
                   (ex-message e)))
-           (reset! thrown? true)))
+           (is (= {:explanation-human ["should be an int"]
+                   :donut.error/url   "https://donut.party/errors/#:donut.error_schema-validation-error"
+                   :donut.error/id    :donut.error/schema-validation-error}
+                  (dissoc (ex-data e) :explanation))
+               (reset! thrown? true))))
     (is @thrown?))
 
   (sut/validate! int? 1))

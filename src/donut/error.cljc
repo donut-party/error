@@ -7,7 +7,7 @@
 
 (defn url
   [error-id]
-  (str "https://donut.party/errors/#" (str/replace  error-id #"/" "_")))
+  (str "https://donut.party/errors/#" (str/replace (str error-id) #"/" "_")))
 
 #?(:clj
    (defmacro validate!
