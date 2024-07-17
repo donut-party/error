@@ -1,12 +1,13 @@
 (ns donut.error
   (:require
+   [clojure.string :as str]
    [malli.core :as m]
    [malli.error :as me])
   #?(:cljs (:require-macros [donut.error :refer [validate!]])))
 
 (defn url
   [error-id]
-  (str "https://donut.party/errors/#" error-id))
+  (str "https://donut.party/errors/#" (str/replace  error-id #"/" "_")))
 
 #?(:clj
    (defmacro validate!
