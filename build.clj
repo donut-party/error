@@ -19,7 +19,7 @@
 
 (defn- pom-template [version]
   [[:description "for oopsies and whoopsiedoodles"]
-   [:url "https://github.com/donut-power/error"]
+   [:url "https://github.com/donut-party/error"]
    [:licenses
     [:license
      [:name "MIT"]
@@ -28,9 +28,9 @@
     [:developer
      [:name "Daniel Higginbotham"]]]
    [:scm
-    [:url "https://github.com/donut-power/error"]
-    [:connection "scm:git:https://github.com/donut-power/error.git"]
-    [:developerConnection "scm:git:ssh:git@github.com:donut-power/error.git"]
+    [:url "https://github.com/donut-party/error"]
+    [:connection "scm:git:https://github.com/donut-party/error.git"]
+    [:developerConnection "scm:git:ssh:git@github.com:donut-party/error.git"]
     [:tag (str "v" version)]]])
 
 (defn- jar-opts [opts]
